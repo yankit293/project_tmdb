@@ -1,0 +1,65 @@
+.watchTrailerBtn {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 8px 20px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .fa-play {
+        margin-right: 8px;
+    }
+}
+
+.trailerModalOverlay {
+    position: fixed; // Fixed position to cover the whole screen
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); // Semi-transparent black background
+    display: flex;
+    align-items: center; // Center the modal vertically
+    justify-content: center; // Center the modal horizontally
+    z-index: 1000; // High z-index to be on top of other elements
+  
+    .trailerModal {
+      width: 80%; // Width of the modal content
+      max-width: 640px; // Maximum width of the modal content
+      background: rgba(0, 0, 0, 0.8); // Background color of the modal content
+      border-radius: 8px; // Rounded corners of the modal content
+      overflow: hidden; // Hide the overflow content
+  
+      .trailerModalContent {
+        position: relative;
+        padding: 20px; // Padding inside the modal content
+  
+        .close {
+          position: fixed;
+          top: 10px;
+          right: 20px;
+          font-size: 30px;
+          cursor: pointer;
+          color: #900404; // Color of the close button
+        }
+  
+        iframe {
+          width: 100%; // Full width of the modal content
+          height: 400px; // Height of the iframe
+          border: none; // No border for the iframe
+        }
+      }
+    }
+  }

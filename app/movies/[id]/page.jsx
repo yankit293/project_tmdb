@@ -4,6 +4,7 @@ import Card from '../../../components/Card';
 import ExpendedCard from '../../../components/ExpandedCard';
 import tmdbClient from '../../../lib/tmdbClient';
 import { unstable_noStore } from 'next/cache';
+import TrailerButton from '../../../components/TrailerButton';
 
 export async function generateMetadata({ params }) {
     const { id } = params;
@@ -35,15 +36,15 @@ export default async function page({ params }) {
     unstable_noStore();
 
     const { id } = params;
-
     const movieData = (await tmdbClient.get(`/movie/${id}?language=en-US`)).data;
     const castData = (await tmdbClient.get(`/movie/${id}/credits?language=en-US`)).data.cast;
     const similarData = (await tmdbClient.get(`/movie/${id}/similar?language=en-US&page=1`)).data.results;
-
+    const trailerData = (await tmdbClient.get(`/movie/${id}/videos?language=en-US`)).data.results;
+    const props = { movieData:movieData, trailerData:trailerData}
     return (
         <div className="details__page">
             <div className="section">
-                <ExpendedCard {...movieData} />
+                <ExpendedCard {...props} />
             </div>
             <div className="section">
                 <h2 className="title">Cast</h2>
