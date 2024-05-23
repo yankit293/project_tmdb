@@ -39,11 +39,12 @@ export default async function page({ params }) {
     const tvData = (await tmdbClient.get(`/tv/${id}?language=en-US`)).data;
     const castData = (await tmdbClient.get(`/tv/${id}/credits?language=en-US`)).data.cast;
     const similarData = (await tmdbClient.get(`/tv/${id}/similar?language=en-US&page=1`)).data.results;
-
+    const trailerData = (await tmdbClient.get(`/tv/${id}/videos?language=en-US`)).data.results;
+    const props = { movieData:tvData, trailerData:trailerData}
     return (
         <div className="details__page">
             <div className="section">
-                <ExpendedCard {...tvData} />
+                <ExpendedCard {...props} />
             </div>
             <div className="section">
                 <h2 className="title">Cast</h2>

@@ -40,8 +40,17 @@ const TrailerButton = (props) => {
   const fetchTrailer = async () => {
     try {
       // Assuming 'videoKey' is the YouTube video key
-      if (props[0].key) {
-        setTrailerUrl(`https://www.youtube.com/embed/${props[0].key}`);
+      let trailerIndex = 0;
+      for(const index in props){
+        if(props[index].site == "Youtube" && props[index].type == "Trailer"
+         || props[index].type == "Teaser"){
+          trailerIndex = index;
+          break;
+         }
+      }
+      console.log(trailerIndex);
+      if (props[trailerIndex].key) {
+        setTrailerUrl(`https://www.youtube.com/embed/${props[trailerIndex].key}`);
         setShowModal(true);
       } else {
         alert('Trailer not available');
